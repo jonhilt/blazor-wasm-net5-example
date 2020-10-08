@@ -1,4 +1,4 @@
-# blazor-wasm-net5-example
+# Blazor WASM application (with server-side prerendering)
 
 The default Blazor .net 5 demo project updated to use prerendering.
 
