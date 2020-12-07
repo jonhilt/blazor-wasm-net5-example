@@ -1,17 +1,42 @@
+@using ExampleApp.Client.Data
+@using ExampleApp.Shared
 @inherits LayoutComponentBase
+@inject ProfileService ProfileService
+@implements IDisposable
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+<div class="flex flex-col h-screen @(ProfileService.Preferences.DarkMode ? "dark" : "")">
+
+    <div class="bg-gray-600 p-4 flex justify-end">
+        <ThemeToggle/>
     </div>
 
-    <div class="main">
-        <div class="top-row px-4">
-            <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+    <div class="flex-grow flex dark:bg-gray-700">
+        <div class="bg-gray-100 px-8 w-48 py-4 border-r shadow-md dark:bg-gray-500">
+            <NavMenu/>
         </div>
 
-        <div class="content px-4">
+        <div class="flex-grow w-auto p-8 mx-auto max-w-5xl">
             @Body
         </div>
     </div>
+
 </div>
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ProfileService.OnChange += RefreshState;
+    }
+
+    public void Dispose()
+    {
+        ProfileService.OnChange -= RefreshState;
+    }
+
+    private void RefreshState(Preferences newPreferences)
+    {
+        StateHasChanged();
+    }
+
+}

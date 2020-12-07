@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,9 @@ namespace ExampleApp.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+            services.AddScoped<ProfileService>();
             services.AddControllersWithViews();
+            services.AddBlazoredLocalStorage();
             services.AddRazorPages();
         }
 

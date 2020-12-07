@@ -1,50 +1,31 @@
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+a {
+    @apply text-blue-600;
 }
 
-a, .btn-link {
-    color: #0366d6;
+p {
+    @apply my-2 dark:text-gray-50;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+h1 {
+    @apply text-2xl mb-2 dark:text-gray-50;
 }
 
-.content {
-    padding-top: 1.1rem;
+h2 {
+    @apply text-xl mb-2 dark:text-gray-50;
 }
 
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+h3 {
+    @apply text-lg mb-2 dark:text-gray-50;
 }
 
-.invalid {
-    outline: 1px solid red;
+button {
+    @apply p-2 rounded-md shadow-md bg-blue-500 dark:bg-gray-200 text-white dark:text-gray-600;
 }
 
-.validation-message {
-    color: red;
+td {
+    @apply border p-2 dark:text-gray-50;
 }
-
-#blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
