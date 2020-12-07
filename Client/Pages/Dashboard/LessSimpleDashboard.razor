@@ -1,0 +1,26 @@
+@page "/LessSimpleDashboard"
+
+@foreach (var widget in _components)
+{
+    @widget
+}
+
+@code {
+    readonly List<RenderFragment> _components = new List<RenderFragment>
+    {
+        RenderWidgetA,
+        RenderWidgetB
+    };
+
+    static readonly RenderFragment RenderWidgetA = __builder =>
+    {
+        <h3>Widget A</h3>
+        <p>This is a widget</p>
+    };
+
+    static readonly RenderFragment RenderWidgetB = __builder =>
+    {
+        <h3>Widget B</h3>
+        <p>This is another widget</p>
+    };
+}

@@ -1,0 +1,27 @@
+@page "/dashboard"
+@using ExampleApp.Client.Data
+
+<h2>Very dynamic</h2>
+@foreach (var widget in _widgets)
+{
+    <hr>
+    @renderWidget(widget.Value)
+}
+
+@code {
+
+    readonly Dictionary<string, Type> _widgets = new Dictionary<string, Type>
+    {
+        ["Counter"] = typeof(Counter),
+        ["Weather"] = typeof(FetchData)
+    };
+
+    private RenderFragment renderWidget(Type t) => builder =>
+    {
+        builder.OpenComponent(0, t);
+        builder.CloseComponent();
+    };
+
+
+
+}

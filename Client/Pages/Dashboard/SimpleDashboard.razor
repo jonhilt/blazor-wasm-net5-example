@@ -1,0 +1,25 @@
+@page "/SimpleDashboard"
+
+@foreach (var widget in _components)
+{
+    switch (widget)
+    {
+        case WidgetA:
+            <WidgetA/>
+            break;
+        case WidgetB:
+            <WidgetB/>
+            break;
+    }
+}
+
+@code {
+
+    readonly List<IComponent> _components
+        = new List<IComponent>
+        {
+            new WidgetA(),
+            new WidgetB()
+        };
+
+}
