@@ -22,7 +22,7 @@ namespace ExampleApp.Server.Data
 
         public async Task<WeatherForecast[]> GetForecastAsync()
         {
-            return _memoryCache.GetOrCreate("WeatherData", e =>
+            return await _memoryCache.GetOrCreateAsync("WeatherData", e =>
             {
                 e.SetOptions(new MemoryCacheEntryOptions
                 {
@@ -30,13 +30,13 @@ namespace ExampleApp.Server.Data
                 });
                 
                 var rng = new Random();
-                return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                return Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
                     {
                         Date = DateTime.Now.AddDays(index),
                         TemperatureC = rng.Next(-20, 55),
                         Summary = Summaries[rng.Next(Summaries.Length)]
                     })
-                    .ToArray();
+                    .ToArray());
             });
         }
     }
